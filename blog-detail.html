@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Image with Likes and Comments</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Memoir</div>
+        <div class="navbar-links">
+            <a href="index.html" class="home-link">Home</a>
+            <a href="blog.html" class="home-link">Blogs</a>
+        </div>
+    </nav>
+    <div class="container">
+        <img id="image" src="art-design-2.jpg" alt="Sample Image">
+        <p>It’s 75,000 volunteers chipping in on countless Saturday mornings across three dozen planting seasons. It means robust post-planting care programs, workforce training, youth education, and dozens of community partnerships. We’re celebrating all of this and more, and we hope you’ll join us:
+
+            Come out and get us even closer to a million trees and native plants! Our 36th planting season calendar is full of opportunities to volunteer with Friends of Trees, plant trees and grow community, all leading up to our millionth tree planted in April. </p>
+        <div class="likes">
+            <button id="likeButton">Like</button>
+            <span id="likeCount">0 Likes</span>
+        </div>
+        
+        <h2>Comments</h2>
+        <div class="comment-section">
+            <div class="comment" data-comment-id="1">
+                <p>This is a great image!</p>
+                <button class="comment-like-button">Like</button>
+                <span class="comment-like-count">0 Likes</span>
+                <div class="reply-section">
+                    <button class="reply-button">Reply</button>
+                    <div class="reply-input" style="display: none;">
+                        <input type="text" class="reply-text" placeholder="Write a reply...">
+                        <button class="submit-reply">Submit</button>
+                    </div>
+                </div>
+                <div class="replies"></div>
+            </div>
+            <div class="comment" data-comment-id="2">
+                <p>Really enjoyed this!</p>
+                <button class="comment-like-button">Like</button>
+                <span class="comment-like-count">0 Likes</span>
+                <div class="reply-section">
+                    <button class="reply-button">Reply</button>
+                    <div class="reply-input" style="display: none;">
+                        <input type="text" class="reply-text" placeholder="Write a reply...">
+                        <button class="submit-reply">Submit</button>
+                    </div>
+                </div>
+                <div class="replies"></div>
+            </div>
+            <div class="comment" data-comment-id="3">
+                <p>Amazing picture!</p>
+                <button class="comment-like-button">Like</button>
+                <span class="comment-like-count">0 Likes</span>
+                <div class="reply-section">
+                    <button class="reply-button">Reply</button>
+                    <div class="reply-input" style="display: none;">
+                        <input type="text" class="reply-text" placeholder="Write a reply...">
+                        <button class="submit-reply">Submit</button>
+                    </div>
+                </div>
+                <div class="replies"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script1111.js"></script>
+</body>
+</html>

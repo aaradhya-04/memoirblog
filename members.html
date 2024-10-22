@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members-Memoir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: "Druk Trial";
+        background-color: white;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .filters {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 50vw;
+            height: 100vh;
+            padding: 2em 2em 8em 2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .filter {
+            width: max-content;
+            height: max-content;
+            padding: 0.5em 0;
+            display: flex;
+            align-items: flex-end;
+            cursor: pointer;
+        }
+
+        .filter p {
+            position: relative;
+            bottom: 10px;
+            padding: 0 0.5em;
+            font-family: "PP Neue Montreal";
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .filter.active p {
+            bottom: 24px;
+        }
+
+        .filter h1 span {
+            position: relative;
+            text-transform: uppercase;
+            font-size: 75px;
+            color:black;
+            line-height: 80%;
+            transition: color 0.3s;
+        }
+
+        .filter.active h1 span {
+            color: #f5cac3;
+        }
+
+        .items {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 100%;
+            padding: 2em;
+            display: flex;
+        }
+
+        .items-col {
+            flex: 1;
+            height: max-content;
+            padding: 2em 1em;
+        }
+
+        .items-col:nth-child(2) {
+            position: relative;
+            top: 10em;
+        }
+
+        .item {
+            padding: 1em 1em 4em 1em;
+        }
+
+        .item-img {
+            width: 100%;
+            height: 300px;
+        }
+
+        .item-copy p {
+            font-family: "PP Neue Montreal";
+            font-size: 15px;
+            font-weight: 500;
+            margin: 0.5em 0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 1em;
+          
+            z-index: 9999;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            font-family: "Circular Std", sans-serif;
+            font-size: 11px;
+           
+            padding: 10px 20px;
+        
+            border-radius: 5px;
+        }
+
+       
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="services.html" target="_blank">SERVICES</a>
+</div>
+
+<div class="container">
+    <div class="filters">
+        <div class="filter active" data-filter="all">
+            <p>(24)</p>
+            <h1>All</h1>
+        </div>
+        <div class="filter" data-filter="sculptist">
+            <p>(12)</p>
+            <h1>Authors</h1>
+        </div>
+        <div class="filter" data-filter="healer">
+            <p>(10)</p>
+            <h1>Editors</h1>
+        </div>
+        <div class="filter" data-filter="serenist">
+            <p>(10)</p>
+            <h1>GuestB's</h1>
+        </div>
+    </div>
+    <div class="items">
+        <div class="items-col"></div>
+        <div class="items-col"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="./items.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const itemsContainer = document.querySelector(".items");
+        const itemsCols = document.querySelectorAll(".items-col");
+        const filters = document.querySelectorAll(".filter");
+        const defaultFontSize = "75px";
+        const activeFontSize = "250px";
+
+        function splitTextIntoSpans(selector) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach((element) => {
+                const text = element.innerText;
+                element.innerHTML = text
+                    .split("")
+                    .map((char) => `<span>${char}</span>`)
+                    .join("");
+            });
+        }
+
+        function animateFontSize(target, fontSize) {
+            const spans = target.querySelectorAll("span");
+            gsap.to(spans, {
+                fontSize: fontSize,
+                stagger: 0.025,
+                duration: 0.5,
+                ease: "power2.out",
+            });
+        }
+
+        function clearItems() {
+            itemsCols.forEach((col) => {
+                col.innerHTML = "";
+            });
+        }
+
+        function addItemsToCols(filter = "all") {
+            let colIndex = 0;
+            const filteredItems = items.filter(
+                (item) => filter === "all" || item.tag.includes(filter)
+            );
+            filteredItems.forEach((item) => {
+                const itemElement = document.createElement("div");
+                itemElement.className = "item";
+                itemElement.innerHTML = `<div class="item-img">
+                                   <a href="${item.link}" target="_blank">
+                                        <img src="${item.img}" alt="${item.title}">
+                                    </a>
+                                   </div>
+                                   <div class="item-copy"><p>${item.title}</p></div>
+                                    `;
+                itemsCols[colIndex % itemsCols.length].appendChild(itemElement);
+                colIndex++;
+            });
+        }
+
+        function animateItems(filter) {
+            gsap.to(itemsContainer, {
+                opacity: 0,
+                duration: 0.25,
+                onComplete: () => {
+                    clearItems();
+                    addItemsToCols(filter);
+                    gsap.to(itemsContainer, {
+                        opacity: 1,
+                        duration: 0.25,
+                    });
+                },
+            });
+        }
+
+        splitTextIntoSpans(".filter h1");
+        animateFontSize(document.querySelector(".filter.active h1"), activeFontSize);
+        addItemsToCols();
+
+        filters.forEach((filter) => {
+            filter.addEventListener("click", function () {
+                if (this.classList.contains("active")) {
+                    return;
+                }
+                const previousActiveFilterH1 = document.querySelector(".filter.active h1");
+                animateFontSize(previousActiveFilterH1, defaultFontSize);
+                filters.forEach((f) => f.classList.remove("active"));
+                this.classList.add("active");
+
+                const newActiveFilterH1 = this.querySelector("h1");
+                animateFontSize(newActiveFilterH1, activeFontSize);
+                const filterValue = this.getAttribute("data-filter");
+                animateItems(filterValue);
+            });
+        });
+    });
+</script>
+</body>
+</html>

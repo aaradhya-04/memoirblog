@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services-Memoir</title>
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 3000vh;
+            background: #000;
+            font-family: "Circular Std";
+            background-image: url(download\ \(3\).jpeg);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: right;
+        }
+
+        .cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 400px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 2em;
+            display: flex;
+            justify-content: right;
+            align-items: left;
+            z-index: 2;
+            mix-blend-mode: difference;
+            gap: 2em;
+        }
+
+        footer {
+            position: fixed;
+            width: 100%;
+            padding: 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: left;
+            z-index: 2;
+            mix-blend-mode: difference;
+            bottom: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        a span {
+            padding: 0 2em;
+        }
+
+        .links {
+            display: flex;
+            gap: 2em;
+        }
+
+        .gallery {
+            position: fixed;
+            width: 200%;
+            height: 100%;
+            left: -75%;
+            overflow: hidden;
+        }
+
+        .item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 80px;
+            cursor: pointer;
+        }
+
+        .item p {
+            width: 100%;
+            font-size: 42px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .item p span {
+            padding: 0 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="catalogue.html">Image</a>
+    </nav>
+    <footer>
+        <div class="links">
+            <a href="https://www.instagram.com/">Instagram</a>
+            <a href="https://accounts.google.com/">Gmail.com</a>
+        </div>
+    </footer>
+
+    <div class="container">
+        <div class="gallery"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        const interiors = [
+           { id: 1, name: "Home", link:"index.html"},
+           { id: 45, name: "About Us",link:"aboutus.html"},
+           { id: 2, name: "Members", link:"members.html"},
+           { id: 3, name: "Home", link:"index.html"},
+           { id: 4, name: "Member", link:"members.html"},
+           { id: 5, name: "Blogs", link:"index.html"},
+           { id: 44, name: "Members",link:"members.html"},
+           { id: 6, name: "About Us", link:"aboutus.html"},
+           { id: 7, name: "Blogs", },
+           { id: 8, name: "Home", link:"index.html"},
+           { id: 9, name: "Members", link:"members.html"},
+           { id: 10, name: "Blogs",link:"medtation.html"},
+           { id: 11, name: "Dashboard",link:"admindashboard.html" },
+           { id: 12, name: "Home", },
+           { id: 13, name: "login", link:"project.html" },
+           { id: 14, name: "Home", link:"index.html"},
+           { id: 15, name: "About Us",link:"medtation.html" },
+           { id: 16, name: "Home",link:"index.html" },
+           { id: 17, name: "Workout",},
+           { id: 18, name: "Meditation",link:"medtation.html" },
+           { id: 19, name: "Blogs", },
+           { id: 20, name: "Home",link:"index.html"},
+           { id: 21, name: "Blogs", },
+           { id: 22, name: "Dashboard",link:"admindashboard.html"  },
+           { id: 23, name: "Checkout",link:"checkout.html"},
+           { id: 24, name: "About Us", },
+           { id: 25, name: "Home", link:"index.html"},
+           { id: 26, name: "Women Health",},
+           { id: 27, name: "Blogs",link:"admindashboard.html"  },
+           { id: 28, name: "Image catalogue", link:"imagecata.html" },
+           { id: 42, name: "Members",link:"members.html"},
+           { id: 29, name: "Blogs",  },
+           { id: 30, name: "Home", link: "index.html" },
+           { id: 43, name: "About Us",link:"aboutus.html"},
+            { id: 30, name: "Home", link:"./folder/index.html"},
+           { id: 32, name: "Members",link:"members.html" },
+           { id: 33, name: "About Us", link:"aboutus.html"},
+           { id: 31, name: "Home", link:"./folder/index.html"},
+           { id: 37, name: "Blogs",},
+           { id: 38, name: "Home", link:"index.html"},
+           
+          
+      
+           
+
+        ];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const cursor = document.querySelector(".cursor");
+            const gallery = document.querySelector(".gallery");
+            const numberOfItems = interiors.length;
+            const radius = 1100;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const angleIncrement = (2 * Math.PI) / numberOfItems;
+
+            for (let i = 0; i < numberOfItems; i++) {
+                const item = document.createElement("a");
+                item.className = "item";
+                item.href = interiors[i].link;
+
+                const p = document.createElement("p");
+                const count = document.createElement("span");
+
+                p.textContent = interiors[i].name;
+                count.textContent = `(${Math.floor(Math.random() * 50 + 1)})`;
+                p.appendChild(count);
+                item.appendChild(p);
+                gallery.appendChild(item);
+
+                const angle = i * angleIncrement;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                const rotation = (angle * 180) / Math.PI;
+
+                gsap.set(item, {
+                    x: x + "px",
+                    y: y + "px",
+                    rotation: rotation
+                });
+            }
+
+            function updatePosition() {
+                const scrollAmount = window.scrollY * 0.0001;
+                document.querySelectorAll(".item").forEach(function(item, index) {
+                    const angle = index * angleIncrement + scrollAmount;
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+                    const rotation = (angle * 180) / Math.PI;
+
+                    gsap.to(item, {
+                        duration: 0.05,
+                        x: x + "px",
+                        y: y + "px",
+                        rotation: rotation,
+                        ease: "elastic.out(1, 0.3)",
+                    });
+                });
+            }
+
+            updatePosition();
+            document.addEventListener("scroll", updatePosition);
+        });
+    </script>
+</body>
+</html>

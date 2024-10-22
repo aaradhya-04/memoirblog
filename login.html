@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login-Memoir</title>
+  <link rel="icon" type="image" href="favicon-32x32.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<style>
+    body{
+        background-color: black;
+    }
+  .navbar {
+    background-color: #f5efe8;
+    height: 60px;
+    margin: 20px;
+    border-radius: 16px;
+    padding: 0.5rem;
+  }
+
+  .navbar-brand {
+    font-weight: 500;
+    color: #a3b18a;
+    font-size: 24px;
+    transition: 0.3s color;
+  }
+
+  .login-button {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 8px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .login-button:hover {
+    background-color: #8f705b;
+  }
+
+  .navbar-toggler {
+    border: none;
+    font-size: 1.25rem;
+  }
+
+  .navbar-toggler:focus,
+  btn-close:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  .nav-link {
+    color: black;
+    font-weight: 500;
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #6b5949;
+  }
+
+  @media (min-width:991px) {
+    .nav-link:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 2px;
+      background-color: black;
+      visibility: hidden;
+      transition: 0.2s ease-in-out;
+    }
+
+    .nav-link:hover::before,
+    .nav-link:active::before {
+      width: 100%;
+      visibility: visible;
+
+    }
+  }
+  body {
+    font-family:'Cairo';
+    background: url(Ja\ usados.jpeg);
+    margin: 0;
+    padding: 20px;
+    color: #bfaf9c;
+}
+
+.contact-form-area {
+    max-width: 500px;
+    height: 500px;
+    margin: auto;
+    padding: 20px;
+    background: #6f5e53;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px #76453B;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d3c8bb;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    border-color: #76453B;
+    outline: none;
+    box-shadow: 0 0 5px #76453B;
+}
+
+.form-select select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d3c8bb;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-select select:focus {
+    border-color: #76453B;
+    outline: none;
+    box-shadow: 0 0 5px  #76453B;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #76453B;
+    color: #d3c8bb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #76453B;
+}
+
+  
+  
+  </style>
+  <body >
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href=""><img src="Memoir__1_-removebg-preview[1].png" width="200px" height="200px"></a>
+  
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Logo</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-2 active" aria-current="page" href="index.html">Home</a>
+                  </li>
+              <li class="nav-item">
+                <a class="nav-link mx-lg-2" href="aboutus.html">About</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link mx-lg-2" href="imagecata.html">Catalogue</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-lg-2" href="members.html">Members</a>
+              </li>
+             
+            </ul>
+  
+          </div>
+        </div>
+        <a href="blogs.html" class="login-button">Blogs</a>
+        <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+
+<br><br><br><br><br><br>
+    <form class="contact-form-area contact-page-form contact-form text-right" id="myForm" action="mail.html" method="post" >
+      <font  align="center"><h2>| LOG-IN HERE |</h2></font>  <br><br>
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control" id="Full Name" name="FullName" placeholder="Full Name" onfocus="this.placeholder = ''"
+                                         onblur="this.placeholder = 'Full Name'">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''"
+                                         onblur="this.placeholder = 'Email Address'">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Phone Number" onfocus="this.placeholder = ''"
+                                         onblur="this.placeholder = 'Phone Number'">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <input type="address" class="form-control" id="email" name="address" placeholder="Complete Address" onfocus="this.placeholder = ''"
+                                         onblur="this.placeholder = 'Complete Address'">
+                                    </div>
+                                    
+                                  
+                                    </div>
+
+                                        <br>
+                                        
+                                    </div>
+                                    
+                                    <div class="form-group col-md-12">
+                                    
+                                    </div><br>
+                                    <div><center><button>PROCEED</button></center></div>
+                                </form>
+                                <br><br><hr color="#6c584c">
+                                <div class="footer2">
+                                    <footer >
+                                      <center> <font color="#6c584c"><b><p>&copy;2024 Memoir . All rights reserved.</p></b></font></center>
+                                      </footer>  
+    </body>
+
+</html>
